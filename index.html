@@ -129,7 +129,22 @@
   }
 
   /* ---------- Fondo que va y viene ---------- */
-  .bg { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+  .bg {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    /* Altura fija: con inset:0 el alto seguía al viewport y, cuando el navegador
+       del celular esconde la barra de direcciones, el SVG se re-encuadraba de
+       golpe al scrollear. 100lvh es el viewport grande y no cambia. */
+    height: 100vh;
+    height: 100lvh;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+    /* capa propia, para que el scroll no lo repinte */
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    contain: paint;
+  }
   .bg svg { position: absolute; inset: 0; width: 100%; height: 100%; }
 
   /* Lo que se mueve son estas burbujas, no las figuras del fondo. */
