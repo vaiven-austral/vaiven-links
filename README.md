@@ -13,7 +13,9 @@ El checklist que originó esta página, el relevamiento de los otros equipos y l
 | | |
 |---|---|
 | `index.html` | **Toda la página.** HTML y CSS en un solo archivo, sin dependencias ni build |
-| Estructura | Panel crema centrado sobre el fondo verde de la marca. Adentro: avatar, logotipo, bio y botones apilados a todo el ancho, al modo Linktree |
+| Estructura | Panel crema centrado sobre formas orgánicas que se mecen despacio. Adentro: avatar, logotipo, bio y botones apilados con título, subtítulo e ícono |
+| Título y favicon | `VaiVen · Links`, con el favicon de la landing embebido — también como `apple-touch-icon` para cuando se guarda en la pantalla de inicio |
+| Fondo | SVG inline con formas y texturas de línea, animado en 30 s. Se desactiva solo con `prefers-reduced-motion` |
 | Logotipo | `logoVerde.png` y el favicon de la landing, **embebidos como data URI** — la página no depende de ningún host externo para la marca |
 | Tipografía | Plus Jakarta Sans, la misma de la landing, desde Google Fonts |
 | Paleta | Fondo `#0e2e30` · panel `#f5f2e9` · texto `#12302f` · verde `#2f6b50` · acento `#49a078`. Sin amarillo |
