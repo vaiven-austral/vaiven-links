@@ -13,7 +13,8 @@ El checklist que originó esta página, el relevamiento de los otros equipos y l
 | | |
 |---|---|
 | `index.html` | **Toda la página.** HTML y CSS en un solo archivo, sin dependencias ni build |
-| Estructura | Panel crema centrado sobre formas orgánicas que se mecen despacio. Adentro: avatar, logotipo, bio y botones apilados con título, subtítulo e ícono |
+| Estructura | **Mobile-first.** En celular los botones van sueltos sobre el fondo; el panel crema aparece recién en `min-width: 720px`. Mismo enfoque que [`SplitItLab/splitit-linktree`](https://github.com/SplitItLab/splitit-linktree) |
+| Logotipo según fondo | Dos versiones: la **blanca** sobre el fondo (celular) y la **verde** sobre el panel (escritorio). Los títulos cambian de color con los tokens `--head-fg` y `--head-soft` |
 | Título y favicon | `VaiVen · Links`, con el favicon de la landing embebido — también como `apple-touch-icon` para cuando se guarda en la pantalla de inicio |
 | Fondo | SVG inline con formas y texturas de línea, animado en 30 s. Se desactiva solo con `prefers-reduced-motion` |
 | Logotipo | `logoVerde.png` y el favicon de la landing, **embebidos como data URI** — la página no depende de ningún host externo para la marca |
@@ -49,7 +50,11 @@ Todo el contenido está en el HTML. Para agregar un link se copia un botón:
 - `class="link off"` es un botón apagado y punteado, sin link: se usa con `<div>` en lugar de `<a>`, para lo que todavía no existe.
 - Los íconos son [Lucide](https://lucide.dev), pegados como SVG inline. Para uno nuevo se copia el `<path>` desde el sitio.
 
-**El logotipo está embebido como data URI.** Si cambia la marca, hay que volver a generar el base64 desde el PNG y reemplazar el `src`.
+**El logotipo está embebido como data URI.** Si cambia la marca, hay que volver a generar el base64 desde el PNG y reemplazar el `src` — son dos, la versión blanca y la verde.
+
+> ⚠️ **No sacar el `<meta name="viewport">` del `<head>`.** Sin él el navegador móvil asume un viewport de ~980 px y la página se ve deszoomada en el celular. Pasó una vez: la página se escribió primero como artifact, donde la plataforma inyecta ese meta, y el error recién apareció al servirla desde Vercel. El detalle está en `vaiven-direccion/docs/bitacora/2026-11-09-una-pagina-sin-meta-viewport-se-ve-deszoomada-en-el-celular.md`.
+>
+> Para verificar que no hay desborde horizontal, comparar en el sitio desplegado `document.documentElement.scrollWidth` contra `innerWidth`. Una captura de pantalla no alcanza.
 
 ## Pendientes
 
