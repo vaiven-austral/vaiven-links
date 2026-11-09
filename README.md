@@ -58,6 +58,8 @@ Todo el contenido está en el HTML. Para agregar un link se copia un botón:
 >
 > Para verificar que no hay desborde horizontal, comparar en el sitio desplegado `document.documentElement.scrollWidth` contra `innerWidth`. Una captura de pantalla no alcanza.
 
+> ⚠️ **No cambiar el `height: 100lvh` del `.bg` por `inset: 0`.** Con `inset: 0` el alto sigue al viewport, y en el celular esconder la barra de direcciones lo redimensiona: el SVG se re-encuadra de golpe y el fondo parece glitchear al scrollear. `100lvh` es el viewport grande y no cambia.
+
 ## Lo que distingue a esta página
 
 Tres gestos que salen del nombre del proyecto y no de la plantilla:
