@@ -17,14 +17,14 @@
 
   /* ---------- Tema claro ---------- */
   :root {
-    --page:      #dff0e6;
-    --s1:        #7fd6b4;
-    --s2:        #49a078;
-    --s3:        #bfe8d6;
-    --s4:        #2f8f72;
-    --s5:        #9fe0c4;
+    --page:      #eef8f2;
+    --s1:        #cdeede;
+    --s2:        #dcf2e8;
+    --s3:        #e3f6ed;
+    --s4:        #f1fbf6;
+    --s5:        #c2ead9;
     --tex:       #ffffff;
-    --tex-op:    .5;
+    --tex-op:    .85;
 
     --panel:     #f6f3ea;
     --card:      #ffffff;
@@ -603,7 +603,7 @@
       raiz.setAttribute('data-tema', siguiente);
       try { localStorage.setItem('vaiven-tema', siguiente); } catch (e) {}
       var meta = document.querySelector('meta[name="theme-color"]');
-      if (meta) meta.setAttribute('content', siguiente === 'oscuro' ? '#071c1e' : '#dff0e6');
+      if (meta) meta.setAttribute('content', siguiente === 'oscuro' ? '#071c1e' : '#eef8f2');
     });
   }
 
