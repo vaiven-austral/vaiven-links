@@ -63,8 +63,8 @@ Todo el contenido está en el HTML. Para agregar un link se copia un botón:
 Tres gestos que salen del nombre del proyecto y no de la plantilla:
 
 - **La canasta se mece** como un péndulo al cargar y al pasar el mouse. Vaivén es el movimiento de ida y vuelta, y la canasta es la marca del producto.
-- **El fondo va y viene**, en dos capas que se cruzan en 26 segundos.
-- **Una cápsula dice cuántos días faltan** para el Steering final, calculado en el momento. Pasada la fecha, cambia sola a «Proyecto entregado».
+- **Siete burbujas flotan** sobre un fondo que no se mueve. Las figuras del SVG quedan fijas y encuadradas; animar la escena entera —rotarla y escalarla— se veía raro.
+- **Un countdown corre** hasta el Steering final: días, horas, minutos y segundos. La fecha está fijada con huso (`2026-11-12T18:00:00-03:00`) para que dé igual desde dónde se abra; pasada la hora se detiene y muestra «Proyecto entregado». Para cambiarla, la constante `META` en el script.
 
 ## Pendientes
 
