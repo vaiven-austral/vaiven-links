@@ -14,7 +14,9 @@ El checklist que originó esta página, el relevamiento de los otros equipos y l
 |---|---|
 | `index.html` | **Toda la página.** HTML y CSS en un solo archivo, sin dependencias ni build |
 | Estructura | **Mobile-first.** En celular los botones van sueltos sobre el fondo; el panel crema aparece recién en `min-width: 720px`. Mismo enfoque que [`SplitItLab/splitit-linktree`](https://github.com/SplitItLab/splitit-linktree) |
-| Logotipo según fondo | Dos versiones: la **blanca** sobre el fondo (celular) y la **verde** sobre el panel (escritorio). Los títulos cambian de color con los tokens `--head-fg` y `--head-soft` |
+| Tema claro y oscuro | Arranca siguiendo al sistema y recuerda la elección en `localStorage` (`vaiven-tema`). El atributo `data-tema` en `<html>` manda sobre la preferencia del sistema. Cambian el fondo, el panel, las tarjetas y el logotipo |
+| Logotipo según tema | Dos versiones: la **verde** en claro y la **blanca** en oscuro, con `--logo-claro` y `--logo-verde` |
+| La canasta | **SVG, no PNG.** El favicon original es de 82 px y se pixelaba en pantallas de alta densidad. Dibujada con trazos, toma el color del tema y es nítida a cualquier tamaño |
 | Título y favicon | `VaiVen · Links`, con el favicon de la landing embebido — también como `apple-touch-icon` para cuando se guarda en la pantalla de inicio |
 | Fondo | SVG inline con formas y texturas de línea, animado en 30 s. Se desactiva solo con `prefers-reduced-motion` |
 | Logotipo | `logoVerde.png` y el favicon de la landing, **embebidos como data URI** — la página no depende de ningún host externo para la marca |
@@ -56,9 +58,18 @@ Todo el contenido está en el HTML. Para agregar un link se copia un botón:
 >
 > Para verificar que no hay desborde horizontal, comparar en el sitio desplegado `document.documentElement.scrollWidth` contra `innerWidth`. Una captura de pantalla no alcanza.
 
+## Lo que distingue a esta página
+
+Tres gestos que salen del nombre del proyecto y no de la plantilla:
+
+- **La canasta se mece** como un péndulo al cargar y al pasar el mouse. Vaivén es el movimiento de ida y vuelta, y la canasta es la marca del producto.
+- **El fondo va y viene**, en dos capas que se cruzan en 26 segundos.
+- **Una cápsula dice cuántos días faltan** para el Steering final, calculado en el momento. Pasada la fecha, cambia sola a «Proyecto entregado».
+
 ## Pendientes
 
 - [ ] Cronograma publicado
 - [ ] PDF de las presentaciones de los Steerings 1 y 2
 - [ ] Steering 3 — presentación y demo, el 12/11
 - [ ] Logo de VaiVen como favicon y como imagen de previsualización al compartir
+- [ ] Reemplazar la canasta dibujada a mano por el **export oficial del Figma** (`Vaivén — Kit de marca — App`, exportar como SVG). La actual es una reconstrucción a partir del favicon de 82 px: respeta el estilo pero puede no ser idéntica al original
