@@ -25,6 +25,8 @@
     --s5:        #c2ead9;
     --tex:       #ffffff;
     --tex-op:    .85;
+    --burbuja:   #6fcfa9;
+    --burbuja-op: .32;
 
     --panel:     #f6f3ea;
     --card:      #ffffff;
@@ -58,6 +60,8 @@
       --s5:        #1a7a6e;
       --tex:       #bdeedb;
       --tex-op:    .26;
+      --burbuja:   #49a078;
+      --burbuja-op: .3;
 
       --panel:     #0f2e2f;
       --card:      #143a3b;
@@ -88,6 +92,8 @@
     --s5:        #1a7a6e;
     --tex:       #bdeedb;
     --tex-op:    .26;
+    --burbuja:   #49a078;
+    --burbuja-op: .3;
 
     --panel:     #0f2e2f;
     --card:      #143a3b;
@@ -124,15 +130,24 @@
 
   /* ---------- Fondo que va y viene ---------- */
   .bg { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
-  .bg svg {
-    position: absolute; left: 50%; top: 50%;
-    width: 190vmax; height: 190vmax;
-    transform: translate(-50%, -50%);
-    animation: mecer 26s ease-in-out infinite alternate;
+  .bg svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+  /* Lo que se mueve son estas burbujas, no las figuras del fondo. */
+  .burbujas { position: absolute; inset: 0; }
+  .burbujas i {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle at 32% 30%,
+      color-mix(in srgb, var(--burbuja) 80%, #fff),
+      var(--burbuja) 62%,
+      color-mix(in srgb, var(--burbuja) 50%, transparent) 100%);
+    opacity: var(--burbuja-op);
+    will-change: transform;
+    animation: flotar var(--dur, 22s) ease-in-out var(--esp, 0s) infinite alternate;
   }
-  @keyframes mecer {
-    from { transform: translate(-53%, -51%) rotate(-4deg) scale(1.00); }
-    to   { transform: translate(-47%, -49%) rotate(4deg) scale(1.10); }
+  @keyframes flotar {
+    from { transform: translate3d(0, 0, 0) scale(1); }
+    to   { transform: translate3d(var(--dx, 3vw), var(--dy, -4vh), 0) scale(var(--esc, 1.12)); }
   }
 
   .wrap {
@@ -239,20 +254,37 @@
   }
 
   /* ---------- Estado del proyecto ---------- */
-  .estado {
-    display: inline-flex; align-items: center; gap: .5rem;
-    margin-top: .9rem; padding: .4rem .85rem .4rem .6rem;
-    border-radius: 999px;
-    background: var(--chip);
-    color: var(--accent);
-    font-size: .82rem; font-weight: 700;
+  .cuenta {
+    display: inline-flex; flex-direction: column; align-items: center; gap: .4rem;
+    margin-top: 1.1rem; padding: .7rem 1.15rem .75rem;
+    border-radius: 18px;
+    background: var(--card);
+    border: 1px solid var(--card-line);
+    box-shadow: 0 2px 10px var(--sombra);
   }
-  .estado .punto {
-    width: .5rem; height: .5rem; border-radius: 50%;
-    background: currentColor;
-    animation: latir 2.4s ease-in-out infinite;
+  .cuenta-rot {
+    font-size: .66rem; font-weight: 700;
+    letter-spacing: .12em; text-transform: uppercase;
+    color: var(--soft);
   }
-  @keyframes latir { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
+  .reloj {
+    display: flex; align-items: flex-start; gap: .25rem;
+    font-variant-numeric: tabular-nums;
+  }
+  .reloj .u { display: grid; justify-items: center; min-width: 2.5rem; }
+  .reloj b {
+    font-size: 1.5rem; font-weight: 800; line-height: 1;
+    color: var(--accent); letter-spacing: -.02em;
+  }
+  .reloj i {
+    font-style: normal; font-size: .6rem; font-weight: 600;
+    letter-spacing: .07em; text-transform: uppercase;
+    color: var(--soft); margin-top: .25rem;
+  }
+  .reloj .sep { font-size: 1.2rem; font-weight: 700; line-height: 1.1; color: var(--soft); opacity: .4; }
+  .cuenta .final { display: none; font-weight: 700; color: var(--accent); }
+  .cuenta.listo .reloj { display: none; }
+  .cuenta.listo .final { display: block; }
 
   /* ---------- Botones ---------- */
   .links { display: grid; gap: .7rem; margin-top: 1.5rem; }
@@ -388,6 +420,15 @@
       <path d="M0,286 C150,248 252,310 296,398"/>
     </g>
   </svg>
+  <div class="burbujas">
+    <i style="left:5%;  top:11%; width:9rem;   height:9rem;   --dx:4vw;  --dy:-5vh; --dur:24s; --esp:0s;"></i>
+    <i style="left:77%; top:7%;  width:6rem;   height:6rem;   --dx:-3vw; --dy:6vh;  --dur:31s; --esp:-6s;"></i>
+    <i style="left:82%; top:63%; width:11rem;  height:11rem;  --dx:-5vw; --dy:-4vh; --dur:27s; --esp:-3s;"></i>
+    <i style="left:11%; top:71%; width:7rem;   height:7rem;   --dx:5vw;  --dy:-6vh; --dur:35s; --esp:-12s;"></i>
+    <i style="left:45%; top:87%; width:5rem;   height:5rem;   --dx:-4vw; --dy:-8vh; --dur:29s; --esp:-9s;"></i>
+    <i style="left:59%; top:33%; width:4rem;   height:4rem;   --dx:3vw;  --dy:5vh;  --dur:21s; --esp:-4s;"></i>
+    <i style="left:1%;  top:43%; width:5.5rem; height:5.5rem; --dx:4vw;  --dy:4vh;  --dur:33s; --esp:-15s;"></i>
+  </div>
 </div>
 
 <div class="wrap">
@@ -425,7 +466,16 @@
     <p class="team-line">Equipo 14 · Universidad Austral</p>
     <p class="bio">Donaciones con matching asistido por IA. Doná lo que ya no usás a quien de verdad lo necesita.</p>
 
-    <p class="estado" id="estado" hidden><span class="punto" aria-hidden="true"></span><span id="estadoTxt"></span></p>
+    <div class="cuenta" id="cuenta" hidden>
+      <span class="cuenta-rot">Steering final · 12 nov 2026</span>
+      <span class="reloj" id="reloj">
+        <span class="u"><b id="cd">--</b><i>días</i></span><span class="sep" aria-hidden="true">:</span>
+        <span class="u"><b id="ch">--</b><i>hs</i></span><span class="sep" aria-hidden="true">:</span>
+        <span class="u"><b id="cm">--</b><i>min</i></span><span class="sep" aria-hidden="true">:</span>
+        <span class="u"><b id="cs">--</b><i>seg</i></span>
+      </span>
+      <span class="final">Proyecto entregado</span>
+    </div>
 
     <div class="links">
 
@@ -607,19 +657,30 @@
     });
   }
 
-  /* ---- Cuántos días faltan para el Steering final ---- */
-  var FINAL = new Date(2026, 10, 12); // 12 de noviembre de 2026
-  var caja = document.getElementById('estado');
-  var txt = document.getElementById('estadoTxt');
-  if (caja && txt) {
-    var hoy = new Date();
-    hoy = new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate());
-    var dias = Math.round((FINAL - hoy) / 86400000);
-    if (dias > 1)       txt.textContent = 'Faltan ' + dias + ' días para el Steering final';
-    else if (dias === 1) txt.textContent = 'Mañana es el Steering final';
-    else if (dias === 0) txt.textContent = 'Hoy es el Steering final';
-    else                 txt.textContent = 'Proyecto entregado · 12 de noviembre de 2026';
+  /* ---- Countdown al Steering final (18:00 de Buenos Aires) ---- */
+  var META = new Date('2026-11-12T18:00:00-03:00');
+  var caja = document.getElementById('cuenta');
+  if (caja) {
+    var cd = document.getElementById('cd'), ch = document.getElementById('ch'),
+        cm = document.getElementById('cm'), cs = document.getElementById('cs');
+    var dos = function (n) { return n < 10 ? '0' + n : '' + n; };
+    var reloj = null;
+    function latido() {
+      var resta = META - Date.now();
+      if (resta <= 0) {
+        caja.classList.add('listo');
+        if (reloj) clearInterval(reloj);
+        return;
+      }
+      var t = Math.floor(resta / 1000);
+      cd.textContent = Math.floor(t / 86400);
+      ch.textContent = dos(Math.floor(t % 86400 / 3600));
+      cm.textContent = dos(Math.floor(t % 3600 / 60));
+      cs.textContent = dos(t % 60);
+    }
+    latido();
     caja.hidden = false;
+    reloj = setInterval(latido, 1000);
   }
 
   /* ---- Compartir ---- */
